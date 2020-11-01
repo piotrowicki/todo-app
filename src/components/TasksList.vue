@@ -1,11 +1,56 @@
 <template>
-    <div>
-        Tasks list
-    </div>
+  <div>
+    <b-table striped :items="tasks" :fields="fields" :primary-key="id">
+      <template #cell(action)="data">
+        <b-button size="sm" :href="`tasks/${data.item.id}`"> Details </b-button>
+      </template>
+    </b-table>
+  </div>
 </template>
 
 <script>
+import TaskDataService from "../services/TaskDataService";
+
 export default {
-    name: "tasks-list"
-}
+  data() {
+    return {
+      fields: [
+        {
+          key: "id",
+          sortable: false,
+        },
+        {
+          key: "title",
+          sortable: true,
+        },
+        {
+          key: "description",
+          sortable: true,
+        },
+        {
+          key: "createDate",
+          sortable: false,
+        },
+        {
+          key: "action",
+        },
+      ],
+      tasks: [],
+    };
+  },
+  methods: {
+    getAll() {
+      TaskDataService.getAll()
+        .then((response) => {
+          this.tasks = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
+  mounted() {
+    this.getAll();
+  },
+};
 </script>

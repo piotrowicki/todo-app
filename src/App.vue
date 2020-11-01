@@ -2,7 +2,7 @@
   <div id="app">
     <b-nav>
       <b-nav-item active>
-        <router-link to="/tasks">tasks</router-link>
+        <router-link to="/tasks">Tasks</router-link>
       </b-nav-item>
     </b-nav>
 
@@ -14,6 +14,6 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
 };
 </script>
