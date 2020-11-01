@@ -1,9 +1,9 @@
 import http from "../http-common";
 
-class TutorialDataService {
+class TaskDataService {
   getAll() {
     return http.get("/tasks");
   }
 }
 
-export default new TutorialDataService();
+export default new TaskDataService();
