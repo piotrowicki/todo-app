@@ -2,7 +2,7 @@
   <div>
     <b-table striped :items="tasks" :fields="fields" :primary-key="id">
       <template #cell(action)="data">
-        <b-button size="sm" :href="`tasks/${data.item.id}`"> Details </b-button>
+        <b-button pill size="sm" variant="info" :to="`tasks/${data.item.id}`"> Details </b-button>
       </template>
     </b-table>
   </div>
@@ -15,10 +15,6 @@ export default {
   data() {
     return {
       fields: [
-        {
-          key: "id",
-          sortable: false,
-        },
         {
           key: "title",
           sortable: true,
