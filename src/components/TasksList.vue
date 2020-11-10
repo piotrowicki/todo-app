@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table striped :items="tasks" :fields="fields" :primary-key="id">
+    <b-table striped :items="tasks" :fields="fields">
       <template #cell(action)="data">
         <b-button pill size="sm" variant="info" :to="`tasks/${data.item.id}`"> Details </b-button>
       </template>

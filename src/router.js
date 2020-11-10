@@ -14,10 +14,9 @@ export default new Router({
 
         },
         {
-            path: "/",
-            alias: "/tasks",
-            name: "tasks",
-            component: () => import("./components/TasksList")
+            path: "/tasks/:id",
+            name: "tasks-details",
+            component: () => import("./components/Task")
         }
     ]
 });
