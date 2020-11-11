@@ -7,6 +7,9 @@ class TaskDataService {
   getById(id) {
     return http.get(`/tasks/${id}`);
   }
+  update(id, data) {
+    return http.put(`/tasks/${id}`, data);
+  }
 }
 
 export default new TaskDataService();

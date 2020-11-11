@@ -1,6 +1,6 @@
 <template>
   <b-container fluid="sm" v-if="task">
-    <b-form @submit="onSubmit">
+    <b-form @submit="onUpdate">
       <b-form-group
         id="title-group"
         label="Title:"
@@ -28,8 +28,10 @@
           max-rows="6"
         ></b-form-textarea>
       </b-form-group>
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" to="/tasks" variant="danger">Back</b-button>
+      <b-button-group>
+        <b-button type="submit" variant="primary">Save</b-button>
+        <b-button type="reset" to="/tasks" variant="danger">Back</b-button>
+      </b-button-group>
     </b-form>
   </b-container>
 </template>
@@ -44,9 +46,23 @@ export default {
     };
   },
   methods: {
-    onSubmit(evt) {
+    onUpdate(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.task));
+      var data = {
+        id: this.task.id,
+        title: this.task.title,
+        description: this.task.description,
+      };
+
+      TaskDataService.update(this.task.id, data)
+        .then((response) => {
+          this.task = response.data;
+          this.$router.push({ name: "tasks" });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      // alert(JSON.stringify(this.task));
     },
     loadTask() {
       TaskDataService.getById(this.$route.params.id)

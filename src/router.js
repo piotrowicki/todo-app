@@ -15,8 +15,13 @@ export default new Router({
         },
         {
             path: "/tasks/:id",
-            name: "tasks-details",
-            component: () => import("./components/Task")
+            name: "task-details",
+            component: () => import("./components/TaskDetails")
+        },
+        {
+            path: "/tasks/:id/edit",
+            name: "task-edit",
+            component: () => import("./components/TaskEdit")
         }
     ]
 });
