@@ -10,23 +10,23 @@ export default new Router({
             path: "/",
             alias: "/tasks",
             name: "tasks",
-            component: () => import("./components/TasksList")
+            component: () => import("./components/task/TasksList")
 
         },
         {
             path: "/tasks/:id",
             name: "task-details",
-            component: () => import("./components/TaskDetails")
+            component: () => import("./components/task/TaskDetails")
         },
         {
             path: "/tasks/:id/edit",
             name: "task-edit",
-            component: () => import("./components/TaskEdit")
+            component: () => import("./components/task/TaskEdit")
         },
         {
             path: "/new",
             name: "task-new",
-            component: () => import("./components/TaskNew")
+            component: () => import("./components/task/TaskNew")
         }
     ]
 });

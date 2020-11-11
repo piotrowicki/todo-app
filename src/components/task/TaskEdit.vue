@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-form @submit="onSave">
+  <b-container fluid="sm">
+    <b-form @submit="onUpdate" v-if="task">
       <b-form-group
         id="title-group"
         label="Title:"
@@ -33,29 +33,49 @@
         <b-button type="reset" to="/tasks" variant="danger">Back</b-button>
       </b-button-group>
     </b-form>
-  </div>
+  </b-container>
 </template>
 
 <script>
-import TaskDataService from "../services/TaskDataService";
+import TaskDataService from "../../services/task/TaskDataService";
 
 export default {
   data() {
     return {
-      task: {}
+      task: null
     };
   },
   methods: {
-    onSave(evt) {
+    onUpdate(evt) {
       evt.preventDefault();
-      TaskDataService.save(this.task)
+      var data = {
+        id: this.task.id,
+        title: this.task.title,
+        description: this.task.description,
+      };
+
+      TaskDataService.update(this.task.id, data)
         .then((response) => {
-          console.log(response);
+          this.task = response.data;
+          this.$router.push({ name: "tasks" });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      // alert(JSON.stringify(this.task));
+    },
+    loadTask() {
+      TaskDataService.getById(this.$route.params.id)
+        .then((response) => {
+          this.task = response.data;
         })
         .catch((e) => {
           console.log(e);
         });
     },
-  }
+  },
+  mounted() {
+    this.loadTask();
+  },
 };
 </script>

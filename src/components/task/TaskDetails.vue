@@ -16,7 +16,7 @@
   </b-container>
 </template>
 <script>
-import TaskDataService from "../services/TaskDataService";
+import TaskDataService from "../../services/task/TaskDataService";
 
 export default {
   data() {
