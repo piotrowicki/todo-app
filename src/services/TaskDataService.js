@@ -10,6 +10,9 @@ class TaskDataService {
   update(id, data) {
     return http.put(`/tasks/${id}`, data);
   }
+  save(data) {
+    return http.post(`/new`, data);
+  }
 }
 
 export default new TaskDataService();
