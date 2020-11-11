@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid="sm">
+  <b-container fluid="sm" v-if="task">
     <b-row>
       <b-col><h4>Title:</h4></b-col>
       <b-col cols="10">{{ task.title }}</b-col>
@@ -33,10 +33,10 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-    },
+    }
   },
   mounted() {
     this.loadTask();
-  },
+  }
 };
 </script>
