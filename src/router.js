@@ -1,6 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import TasksList from './components/task/TasksList'
+import TaskDetails from './components/task/TaskDetails'
+import TaskEdit from './components/task/TaskEdit'
+import TasksNew from './components/task/TaskNew'
+
 Vue.use(Router);
 
 export default new Router({
@@ -10,23 +15,22 @@ export default new Router({
             path: "/",
             alias: "/tasks",
             name: "tasks",
-            component: () => import("./components/task/TasksList")
-
+            component: TasksList
         },
         {
             path: "/tasks/:id",
             name: "task-details",
-            component: () => import("./components/task/TaskDetails")
+            component: TaskDetails
         },
         {
             path: "/tasks/:id/edit",
             name: "task-edit",
-            component: () => import("./components/task/TaskEdit")
+            component: TaskEdit
         },
         {
-            path: "/new",
+            path: "/tasks/new",
             name: "task-new",
-            component: () => import("./components/task/TaskNew")
+            component: TasksNew
         }
     ]
 });
