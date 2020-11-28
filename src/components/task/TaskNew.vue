@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-container fluid="sm">
     <b-form @submit="onSave">
       <b-form-group
         id="title-group"
@@ -33,7 +33,8 @@
         <b-button type="reset" to="/tasks" variant="danger">Back</b-button>
       </b-button-group>
     </b-form>
-  </div>
+     <b-alert variant="success" show v-if="msg">{{ msg }}</b-alert>
+  </b-container>
 </template>
 
 <script>
@@ -42,7 +43,8 @@ import TaskDataService from "../../services/task/TaskDataService";
 export default {
   data() {
     return {
-      task: {}
+      task: {},
+      msg: ''
     };
   },
   methods: {
@@ -51,6 +53,7 @@ export default {
       TaskDataService.save(this.task)
         .then((response) => {
           console.log(response);
+          this.msg = "Task added successfully."
         })
         .catch((e) => {
           console.log(e);
