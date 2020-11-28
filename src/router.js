@@ -6,6 +6,7 @@ import Details from './components/task/TaskDetails'
 import Edit from './components/task/TaskEdit'
 import New from './components/task/TaskNew'
 import Register from './components/user/Register'
+import Login from './components/user/Login'
 
 Vue.use(Router);
 
@@ -21,6 +22,7 @@ export default new Router({
                 { path: '/tasks/:id/edit', component: Edit }
             ]
         },
-        {path: '/register', component: Register }
+        { path: '/register', component: Register },
+        { path: '/login', component: Login }
     ]
 });
