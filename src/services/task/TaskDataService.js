@@ -11,7 +11,7 @@ class TaskDataService {
     return http.put(`/tasks/${id}`, data);
   }
   save(data) {
-    return http.post(`/new`, data);
+    return http.post(`/tasks/new`, data);
   }
 }
 
