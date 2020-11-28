@@ -5,8 +5,8 @@ import List from './components/task/TasksList'
 import Details from './components/task/TaskDetails'
 import Edit from './components/task/TaskEdit'
 import New from './components/task/TaskNew'
-import Register from './components/user/Register'
-import Login from './components/user/Login'
+import Register from './components/auth/Register'
+import Login from './components/auth/Login'
 
 Vue.use(Router);
 
