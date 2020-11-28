@@ -6,6 +6,8 @@
       </b-nav-item>
       <b-nav-item>
         <router-link to="/tasks/new">New</router-link>
+      </b-nav-item><b-nav-item>
+        <router-link to="/register">Register</router-link>
       </b-nav-item>
     </b-nav>
 
