@@ -30,7 +30,6 @@
       </b-form-group>
       <b-button-group>
         <b-button type="submit" variant="primary">Save</b-button>
-        <b-button type="reset" to="/tasks" variant="danger">Back</b-button>
       </b-button-group>
     </b-form>
   </b-container>
@@ -57,7 +56,7 @@ export default {
       TaskDataService.update(this.task.id, data)
         .then((response) => {
           this.task = response.data;
-          this.$router.push({ name: "tasks" });
+          this.$router.push({ path: "/" });
         })
         .catch((e) => {
           console.log(e);
@@ -72,10 +71,10 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-    },
+    }
   },
   mounted() {
     this.loadTask();
-  },
+  }
 };
 </script>
