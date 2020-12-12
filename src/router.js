@@ -7,6 +7,7 @@ import Edit from './components/task/TaskEdit'
 import New from './components/task/TaskNew'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import Event from './components/EventTrigger'
 
 Vue.use(Router);
 
@@ -23,6 +24,7 @@ export default new Router({
             ]
         },
         { path: '/register', component: Register },
-        { path: '/login', component: Login }
+        { path: '/login', component: Login },
+        { path: '/event', component: Event }
     ]
 });
