@@ -17,6 +17,32 @@
             ></b-form-input>
           </b-form-group>
 
+          <b-form-group
+            id="first-name-group"
+            label="First Name:"
+            label-for="first-name"
+          >
+            <b-form-input
+              id="first-name"
+              v-model="user.firstName"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="last-name-group"
+            label="Last Name:"
+            label-for="last-name"
+          >
+            <b-form-input
+              id="last-name"
+              v-model="user.lastName"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
+
           <b-form-group id="email-group" label="Email:" label-for="email">
             <b-form-input
               id="email"
@@ -39,6 +65,15 @@
             ></b-form-input>
           </b-form-group>
 
+          <b-form-group id="role-group" label="Role:" label-for="role">
+            <b-form-input
+              id="role"
+              v-model="user.role"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
+
           <b-button-group>
             <b-button type="submit" variant="primary">Register</b-button>
           </b-button-group>
@@ -49,6 +84,8 @@
   </b-container>
 </template>
 <script>
+import UserDataService from "../../services/user/UserDataService";
+
 export default {
   data() {
     return {
@@ -56,7 +93,17 @@ export default {
     };
   },
   methods: {
-    onRegister() {},
+    onRegister(evt) {
+      evt.preventDefault();
+      console.log(this.user);
+      UserDataService.save(this.user)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
 };
 </script>
