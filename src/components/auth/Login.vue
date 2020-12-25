@@ -40,6 +40,8 @@
   </b-container>
 </template>
 <script>
+import UserDataService from "../../services/user/UserDataService";
+
 export default {
   data() {
     return {
@@ -47,7 +49,24 @@ export default {
     };
   },
   methods: {
-    onLogin() {},
+    onLogin(evt) {
+      evt.preventDefault();
+      UserDataService.login(this.user)
+        .then((response) => {
+          let user = response.data;
+          if (user) {
+            user.authdata = window.btoa(
+              this.user.username + ":" + this.user.password
+            );
+            localStorage.setItem("user", JSON.stringify(user));
+            this.$router.push(this.$route.query.returnUrl || 'tasks');
+            this.$emit('logged-in', true)
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
 };
 </script>

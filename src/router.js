@@ -11,7 +11,7 @@ import Event from './components/EventTrigger'
 
 Vue.use(Router);
 
-export default new Router({
+export const router = new Router({
     mode: "history",
     routes: [
         { path: '/', redirect: '/tasks' },
@@ -28,3 +28,19 @@ export default new Router({
         { path: '/event', component: Event }
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    // redirect to login page if not logged in and trying to access a restricted page
+    const publicPages = ['/login'];
+    const authRequired = !publicPages.includes(to.path);
+    const loggedIn = localStorage.getItem('user');
+
+    if (authRequired && !loggedIn) {
+        return next({
+            path: '/login',
+            query: { returnUrl: to.path }
+        });
+    }
+
+    next();
+})
